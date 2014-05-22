@@ -22,6 +22,11 @@
 		49205F02192DE5DC00FFD8F9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49205EE6192DE5DC00FFD8F9 /* CoreData.framework */; };
 		49205F0A192DE5DC00FFD8F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49205F08192DE5DC00FFD8F9 /* InfoPlist.strings */; };
 		49205F0C192DE5DC00FFD8F9 /* GeolocFlickrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F0B192DE5DC00FFD8F9 /* GeolocFlickrTests.m */; };
+		49205F16192DEC3500FFD8F9 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49205F15192DEC3500FFD8F9 /* Storyboard_iPhone.storyboard */; };
+		49205F19192DF5D100FFD8F9 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F18192DF5D100FFD8F9 /* PicturesViewController.m */; };
+		49205F1C192DF6CF00FFD8F9 /* FJReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F1B192DF6CF00FFD8F9 /* FJReaderView.m */; };
+		49205F1F192DF93300FFD8F9 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F1E192DF93300FFD8F9 /* Picture.m */; };
+		49205F27192DFAE700FFD8F9 /* FlickrPicturesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,15 @@
 		49205F07192DE5DC00FFD8F9 /* GeolocFlickrTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GeolocFlickrTests-Info.plist"; sourceTree = "<group>"; };
 		49205F09192DE5DC00FFD8F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49205F0B192DE5DC00FFD8F9 /* GeolocFlickrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeolocFlickrTests.m; sourceTree = "<group>"; };
+		49205F15192DEC3500FFD8F9 /* Storyboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
+		49205F17192DF5D100FFD8F9 /* PicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesViewController.h; sourceTree = "<group>"; };
+		49205F18192DF5D100FFD8F9 /* PicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesViewController.m; sourceTree = "<group>"; };
+		49205F1A192DF6CF00FFD8F9 /* FJReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FJReaderView.h; sourceTree = "<group>"; };
+		49205F1B192DF6CF00FFD8F9 /* FJReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FJReaderView.m; sourceTree = "<group>"; };
+		49205F1D192DF93300FFD8F9 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		49205F1E192DF93300FFD8F9 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		49205F25192DFAE700FFD8F9 /* FlickrPicturesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPicturesService.h; sourceTree = "<group>"; };
+		49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPicturesService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +131,9 @@
 			children = (
 				49205EF1192DE5DC00FFD8F9 /* AppDelegate.h */,
 				49205EF2192DE5DC00FFD8F9 /* AppDelegate.m */,
-				49205EF7192DE5DC00FFD8F9 /* Images.xcassets */,
-				49205EF4192DE5DC00FFD8F9 /* GeolocFlickr.xcdatamodeld */,
+				49205F23192DFA0A00FFD8F9 /* View */,
+				49205F20192DF9AD00FFD8F9 /* Model */,
+				49205F22192DF9E800FFD8F9 /* ViewController */,
 				49205EE9192DE5DC00FFD8F9 /* Supporting Files */,
 			);
 			path = GeolocFlickr;
@@ -127,6 +142,8 @@
 		49205EE9192DE5DC00FFD8F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				49205EF7192DE5DC00FFD8F9 /* Images.xcassets */,
+				49205EF4192DE5DC00FFD8F9 /* GeolocFlickr.xcdatamodeld */,
 				49205EEA192DE5DC00FFD8F9 /* GeolocFlickr-Info.plist */,
 				49205EEB192DE5DC00FFD8F9 /* InfoPlist.strings */,
 				49205EEE192DE5DC00FFD8F9 /* main.m */,
@@ -151,6 +168,60 @@
 				49205F08192DE5DC00FFD8F9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49205F20192DF9AD00FFD8F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49205F21192DF9B900FFD8F9 /* ModelObject */,
+				49205F28192DFAFF00FFD8F9 /* Service */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		49205F21192DF9B900FFD8F9 /* ModelObject */ = {
+			isa = PBXGroup;
+			children = (
+				49205F1D192DF93300FFD8F9 /* Picture.h */,
+				49205F1E192DF93300FFD8F9 /* Picture.m */,
+			);
+			name = ModelObject;
+			sourceTree = "<group>";
+		};
+		49205F22192DF9E800FFD8F9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49205F17192DF5D100FFD8F9 /* PicturesViewController.h */,
+				49205F18192DF5D100FFD8F9 /* PicturesViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		49205F23192DFA0A00FFD8F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				49205F15192DEC3500FFD8F9 /* Storyboard_iPhone.storyboard */,
+				49205F24192DFA1E00FFD8F9 /* CustomControl */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		49205F24192DFA1E00FFD8F9 /* CustomControl */ = {
+			isa = PBXGroup;
+			children = (
+				49205F1A192DF6CF00FFD8F9 /* FJReaderView.h */,
+				49205F1B192DF6CF00FFD8F9 /* FJReaderView.m */,
+			);
+			name = CustomControl;
+			sourceTree = "<group>";
+		};
+		49205F28192DFAFF00FFD8F9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				49205F25192DFAE700FFD8F9 /* FlickrPicturesService.h */,
+				49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49205EED192DE5DC00FFD8F9 /* InfoPlist.strings in Resources */,
+				49205F16192DEC3500FFD8F9 /* Storyboard_iPhone.storyboard in Resources */,
 				49205EF8192DE5DC00FFD8F9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,8 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49205F1F192DF93300FFD8F9 /* Picture.m in Sources */,
 				49205EF3192DE5DC00FFD8F9 /* AppDelegate.m in Sources */,
+				49205F19192DF5D100FFD8F9 /* PicturesViewController.m in Sources */,
+				49205F1C192DF6CF00FFD8F9 /* FJReaderView.m in Sources */,
 				49205EF6192DE5DC00FFD8F9 /* GeolocFlickr.xcdatamodeld in Sources */,
+				49205F27192DFAE700FFD8F9 /* FlickrPicturesService.m in Sources */,
 				49205EEF192DE5DC00FFD8F9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

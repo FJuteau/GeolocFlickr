@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pZf-hp-GAr">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - Liste des villes-->
+        <scene sceneID="5ho-Nw-8U8">
+            <objects>
+                <viewController id="d86-vT-bQu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4ai-kx-WU7"/>
+                        <viewControllerLayoutGuide type="bottom" id="kXC-Je-UPU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C4k-q6-R2T">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCS-dm-JBt">
+                                <rect key="frame" x="137" y="269" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Click">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="QgE-R3-c9v" kind="push" id="wOY-LI-bIb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZCS-dm-JBt" firstAttribute="centerY" secondItem="C4k-q6-R2T" secondAttribute="centerY" id="NTH-1U-ykc"/>
+                            <constraint firstAttribute="centerX" secondItem="ZCS-dm-JBt" secondAttribute="centerX" constant="5.5" id="xMz-c1-Tq2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Liste des villes" id="tAb-EX-yiL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hDC-vz-thg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="51" y="4"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YWC-W7-peW">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="pZf-hp-GAr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f83-gi-e0h">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="d86-vT-bQu" kind="relationship" relationship="rootViewController" id="ZBW-rf-gOv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RKU-c0-kgG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-389" y="4"/>
+        </scene>
+        <!--Pictures View Controller - PicturesViewController-->
+        <scene sceneID="HPd-eF-Ge3">
+            <objects>
+                <viewController title="PicturesViewController" id="QgE-R3-c9v" customClass="PicturesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i5U-JU-rPk"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dre-ee-LuV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W4v-Pe-9MR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtM-ej-Ufh">
+                                <rect key="frame" x="122" y="312" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RqB-A5-B8y">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIQ-lv-2Le" customClass="FJReaderView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dtM-ej-Ufh" firstAttribute="centerX" secondItem="RqB-A5-B8y" secondAttribute="centerX" id="CZU-du-8MW"/>
+                            <constraint firstItem="dtM-ej-Ufh" firstAttribute="top" secondItem="RqB-A5-B8y" secondAttribute="bottom" constant="18" id="LRY-6d-Btl"/>
+                            <constraint firstAttribute="trailing" secondItem="VIQ-lv-2Le" secondAttribute="trailing" id="Sn7-yv-Mgk"/>
+                            <constraint firstItem="RqB-A5-B8y" firstAttribute="centerY" secondItem="W4v-Pe-9MR" secondAttribute="centerY" id="bVV-DC-LEp"/>
+                            <constraint firstItem="VIQ-lv-2Le" firstAttribute="top" secondItem="i5U-JU-rPk" secondAttribute="bottom" id="emS-31-c0H"/>
+                            <constraint firstItem="VIQ-lv-2Le" firstAttribute="leading" secondItem="W4v-Pe-9MR" secondAttribute="leading" id="kjM-fx-dhs"/>
+                            <constraint firstItem="RqB-A5-B8y" firstAttribute="centerX" secondItem="W4v-Pe-9MR" secondAttribute="centerX" id="l2R-0T-aUZ"/>
+                            <constraint firstAttribute="bottom" secondItem="VIQ-lv-2Le" secondAttribute="bottom" id="wwp-59-USg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photos" id="blL-jb-7gw">
+                        <barButtonItem key="backBarButtonItem" title="avant" id="Qci-OE-kuH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="e3v-bz-gDo"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ReaderView" destination="VIQ-lv-2Le" id="w29-4L-8js"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FpI-bo-Gse" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="482" y="4"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
