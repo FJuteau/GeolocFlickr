@@ -89,6 +89,57 @@
 - (UIView *) readerView:(id)sender pageAtIndex:(int)index
 {
     Picture * pictureToDisplay = self.pictures[index];
+    
+    UIView * pageView;
+    
+    if (pictureToDisplay.imageData)
+    {
+        UIImage * downloadedImage = [UIImage imageWithData:pictureToDisplay.imageData];
+        
+         pageView = [[UIImageView alloc] initWithImage:downloadedImage];
+        pageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    else
+    {
+        dispatch_queue_t netQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+        
+        dispatch_async(netQ,
+       ^{
+           // Code à executer en async.
+           NSData * data = [NSData dataWithContentsOfURL:pictureToDisplay.url];
+           
+           // CallBack dans la MainQueue
+           dispatch_async(dispatch_get_main_queue(),
+              ^{
+                  pictureToDisplay.imageData = data;
+                  
+                  [self.ReaderView showPage:index animated:NO];
+              });
+           
+       });
+        
+        pageView = [[UIView alloc] init];
+        pageView.backgroundColor = [UIColor blackColor];
+        
+        UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc] init];
+        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+        [spinner startAnimating];
+        spinner.center = CGPointMake(pageView.bounds.size.width / 2, pageView.bounds.size.height / 2);
+        spinner.autoresizingMask =  UIViewAutoresizingFlexibleBottomMargin |
+                                    UIViewAutoresizingFlexibleLeftMargin |
+                                    UIViewAutoresizingFlexibleRightMargin |
+                                    UIViewAutoresizingFlexibleTopMargin;
+        
+        [pageView addSubview:spinner];
+        
+    }
+    
+    return pageView;
+}
+
+- (UIView *) readerFAKEView:(id)sender pageAtIndex:(int)index
+{
+    Picture * pictureToDisplay = self.pictures[index];
     NSURL * urlForPictureToDisplay = pictureToDisplay.url;
     
     NSData * dataFromDownloadedPicture;
