@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FlickrPicturesService.h"
 
 @interface PicturesViewController : UIViewController
+
+@property (assign, readwrite, nonatomic) PicturesServiceLocation location;
 
 @end

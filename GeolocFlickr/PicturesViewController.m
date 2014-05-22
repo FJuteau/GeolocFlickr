@@ -9,7 +9,6 @@
 #import "PicturesViewController.h"
 #import "FJReaderView.h"
 #import "Picture.h"
-#import "FlickrPicturesService.h"
 
 @interface PicturesViewController () <FJReaderViewDelegate>
 
@@ -63,7 +62,7 @@
     
     // Récupération des photos
     FlickrPicturesService * fetcher = [[FlickrPicturesService alloc] init];
-    self.pictures = [fetcher picturesAroundLocation:location];
+    self.pictures = [fetcher picturesAroundLocation:self.location];
 }
 
 - (void)didReceiveMemoryWarning
@@ -166,6 +165,21 @@
 {
     // .count : nombre d'éléments dans un tableau
     return self.pictures.count;
+    
+}
+
+- (IBAction)handleSocialSharingButtonClicked:(id)sender
+{
+    Picture * p = self.pictures[self.ReaderView.PageCounter];
+    
+    NSArray * shareItem = @[p.title, p.url];
+    
+    UIActivityViewController * vc = [[UIActivityViewController alloc] initWithActivityItems:shareItem applicationActivities:nil];
+    
+    [self presentViewController:vc
+                       animated:YES
+                     completion:nil];
+    
     
 }
 

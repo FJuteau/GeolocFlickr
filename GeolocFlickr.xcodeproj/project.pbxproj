@@ -27,6 +27,7 @@
 		49205F1C192DF6CF00FFD8F9 /* FJReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F1B192DF6CF00FFD8F9 /* FJReaderView.m */; };
 		49205F1F192DF93300FFD8F9 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F1E192DF93300FFD8F9 /* Picture.m */; };
 		49205F27192DFAE700FFD8F9 /* FlickrPicturesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */; };
+		49205F2B192E4CFB00FFD8F9 /* CitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F2A192E4CFB00FFD8F9 /* CitiesTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		49205F1E192DF93300FFD8F9 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		49205F25192DFAE700FFD8F9 /* FlickrPicturesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPicturesService.h; sourceTree = "<group>"; };
 		49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPicturesService.m; sourceTree = "<group>"; };
+		49205F29192E4CFB00FFD8F9 /* CitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesTableViewController.h; sourceTree = "<group>"; };
+		49205F2A192E4CFB00FFD8F9 /* CitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 		49205F22192DF9E800FFD8F9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				49205F29192E4CFB00FFD8F9 /* CitiesTableViewController.h */,
+				49205F2A192E4CFB00FFD8F9 /* CitiesTableViewController.m */,
 				49205F17192DF5D100FFD8F9 /* PicturesViewController.h */,
 				49205F18192DF5D100FFD8F9 /* PicturesViewController.m */,
 			);
@@ -326,6 +331,7 @@
 				49205F1C192DF6CF00FFD8F9 /* FJReaderView.m in Sources */,
 				49205EF6192DE5DC00FFD8F9 /* GeolocFlickr.xcdatamodeld in Sources */,
 				49205F27192DFAE700FFD8F9 /* FlickrPicturesService.m in Sources */,
+				49205F2B192E4CFB00FFD8F9 /* CitiesTableViewController.m in Sources */,
 				49205EEF192DE5DC00FFD8F9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

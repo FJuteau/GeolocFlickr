@@ -12,7 +12,6 @@
 {
     BOOL _isConfigured;
     BOOL _isAnimating;
-    int _pageCounter;
 }
 
 static int identifier = 24;
@@ -46,7 +45,7 @@ static int identifier = 24;
     [swpRight addTarget:self action:@selector(handleSwipe:)];
     [self addGestureRecognizer:swpRight];
     
-    _pageCounter = 0;
+    _PageCounter = 0;
     
 }
 
@@ -72,7 +71,7 @@ static int identifier = 24;
     {
         _isAnimating = YES;
         float offsetX = pageToDisplay.bounds.size.width;
-        if(index > _pageCounter) offsetX *= -1;
+        if(index > _PageCounter) offsetX *= -1;
         
         pageToDisplay.center = CGPointMake(pageToDisplay.center.x - offsetX, pageToDisplay.center.y);
         
@@ -94,32 +93,32 @@ static int identifier = 24;
         [pageToRemove removeFromSuperview];
     }
     
-    _pageCounter = index;
+    _PageCounter = index;
 }
 
 - (void) handleSwipe:(UISwipeGestureRecognizer*) sender
 {
     int tempCounter = -1;
     
-    BOOL isDisplayingFirstPage = (_pageCounter == 0);
-    BOOL isDisplayingLastPage = (_pageCounter == [self.delegate numberOfPagesInReaderView:self] - 1);
+    BOOL isDisplayingFirstPage = (_PageCounter == 0);
+    BOOL isDisplayingLastPage = (_PageCounter == [self.delegate numberOfPagesInReaderView:self] - 1);
     
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft && !isDisplayingLastPage)
     {
-        tempCounter = _pageCounter + 1;
-        NSLog(@"Page up: %d", _pageCounter);
+        tempCounter = _PageCounter + 1;
+        NSLog(@"Page up: %d", _PageCounter);
     }
     else if (sender.direction == UISwipeGestureRecognizerDirectionRight && !isDisplayingFirstPage)
     {
-        tempCounter = _pageCounter - 1;
-        NSLog(@"Page down: %d", _pageCounter);
+        tempCounter = _PageCounter - 1;
+        NSLog(@"Page down: %d", _PageCounter);
     }
     
     if (tempCounter != -1)
     {
         [self showPage:tempCounter animated:YES];
     }
-    else if (_pageCounter >= 0)
+    else if (_PageCounter >= 0)
     {
         [self bounce];
     }
@@ -134,7 +133,7 @@ static int identifier = 24;
     float offsetX = (page.bounds.size.width / 5);
     
     // On change le sens si ce n'est pas la première page
-    if(_pageCounter != 0) offsetX *= -1;
+    if(_PageCounter != 0) offsetX *= -1;
     
     [UIView animateWithDuration:.3
                      animations:^
