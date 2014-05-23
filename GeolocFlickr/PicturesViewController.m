@@ -21,6 +21,8 @@
 
 @implementation PicturesViewController
 
+#pragma mark - View LifeCycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,18 +55,6 @@
     //[self update];
 }
 
-- (void) update
-{
-    // Lieu (temporaire)
-    PicturesServiceLocation location;
-    location.longitude = 0;
-    location.latitude = 0;
-    
-    // Récupération des photos
-    FlickrPicturesService * fetcher = [[FlickrPicturesService alloc] init];
-    self.pictures = [fetcher picturesAroundLocation:self.location];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -77,13 +67,28 @@
     }
     
     // KVC
-//    [self.pictures makeObjectsPerformSelector:@selector(setImageData:) withObject:nil];
+    //    [self.pictures makeObjectsPerformSelector:@selector(setImageData:) withObject:nil];
     
     // block API
-//    [self.pictures enumerateObjectsUsingBlock:^(Picture obj, NSUInteger idx, BOOL *stop) {
-//        obj.imageData = nil;
-//    }];
+    //    [self.pictures enumerateObjectsUsingBlock:^(Picture obj, NSUInteger idx, BOOL *stop) {
+    //        obj.imageData = nil;
+    //    }];
 }
+
+
+- (void) update
+{
+    // Lieu (temporaire)
+    PicturesServiceLocation location;
+    location.longitude = 0;
+    location.latitude = 0;
+    
+    // Récupération des photos
+    FlickrPicturesService * fetcher = [[FlickrPicturesService alloc] init];
+    self.pictures = [fetcher picturesAroundLocation:self.location];
+}
+
+#pragma mark - ReaderView Delegate
 
 - (UIView *) readerView:(id)sender pageAtIndex:(int)index
 {
@@ -136,30 +141,30 @@
     return pageView;
 }
 
-- (UIView *) readerFAKEView:(id)sender pageAtIndex:(int)index
-{
-    Picture * pictureToDisplay = self.pictures[index];
-    NSURL * urlForPictureToDisplay = pictureToDisplay.url;
-    
-    NSData * dataFromDownloadedPicture;
-    // Si la data existe déjà, on l'utilise, sinon on la télécharge
-    if (pictureToDisplay.imageData)
-    {
-        dataFromDownloadedPicture = pictureToDisplay.imageData;
-    }
-    else
-    {
-        dataFromDownloadedPicture = [NSData dataWithContentsOfURL:urlForPictureToDisplay];
-        pictureToDisplay.imageData = dataFromDownloadedPicture;
-    }
-    
-    UIImage * downloadedImage = [UIImage imageWithData:dataFromDownloadedPicture];
-    
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:downloadedImage];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    return imageView;
-}
+//- (UIView *) readerFAKEView:(id)sender pageAtIndex:(int)index
+//{
+//    Picture * pictureToDisplay = self.pictures[index];
+//    NSURL * urlForPictureToDisplay = pictureToDisplay.url;
+//    
+//    NSData * dataFromDownloadedPicture;
+//    // Si la data existe déjà, on l'utilise, sinon on la télécharge
+//    if (pictureToDisplay.imageData)
+//    {
+//        dataFromDownloadedPicture = pictureToDisplay.imageData;
+//    }
+//    else
+//    {
+//        dataFromDownloadedPicture = [NSData dataWithContentsOfURL:urlForPictureToDisplay];
+//        pictureToDisplay.imageData = dataFromDownloadedPicture;
+//    }
+//    
+//    UIImage * downloadedImage = [UIImage imageWithData:dataFromDownloadedPicture];
+//    
+//    UIImageView * imageView = [[UIImageView alloc] initWithImage:downloadedImage];
+//    imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    
+//    return imageView;
+//}
 
 - (int) numberOfPagesInReaderView:(id)readerView
 {

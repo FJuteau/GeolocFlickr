@@ -28,6 +28,9 @@
 		49205F1F192DF93300FFD8F9 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F1E192DF93300FFD8F9 /* Picture.m */; };
 		49205F27192DFAE700FFD8F9 /* FlickrPicturesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */; };
 		49205F2B192E4CFB00FFD8F9 /* CitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F2A192E4CFB00FFD8F9 /* CitiesTableViewController.m */; };
+		49205F2E192F3B2C00FFD8F9 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F2D192F3B2C00FFD8F9 /* City.m */; };
+		49205F31192F485800FFD8F9 /* City+DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F30192F485800FFD8F9 /* City+DAO.m */; };
+		49205F36192F810800FFD8F9 /* CityLocalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 49205F35192F810800FFD8F9 /* CityLocalizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,14 @@
 		49205F26192DFAE700FFD8F9 /* FlickrPicturesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPicturesService.m; sourceTree = "<group>"; };
 		49205F29192E4CFB00FFD8F9 /* CitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesTableViewController.h; sourceTree = "<group>"; };
 		49205F2A192E4CFB00FFD8F9 /* CitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesTableViewController.m; sourceTree = "<group>"; };
+		49205F2C192F3B2C00FFD8F9 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = ../City.h; sourceTree = "<group>"; };
+		49205F2D192F3B2C00FFD8F9 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = ../City.m; sourceTree = "<group>"; };
+		49205F2F192F485800FFD8F9 /* City+DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "City+DAO.h"; sourceTree = "<group>"; };
+		49205F30192F485800FFD8F9 /* City+DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "City+DAO.m"; sourceTree = "<group>"; };
+		49205F32192F7B6700FFD8F9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49205F33192F7B6700FFD8F9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49205F34192F810800FFD8F9 /* CityLocalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityLocalizer.h; sourceTree = "<group>"; };
+		49205F35192F810800FFD8F9 /* CityLocalizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityLocalizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				49205EF7192DE5DC00FFD8F9 /* Images.xcassets */,
-				49205EF4192DE5DC00FFD8F9 /* GeolocFlickr.xcdatamodeld */,
 				49205EEA192DE5DC00FFD8F9 /* GeolocFlickr-Info.plist */,
 				49205EEB192DE5DC00FFD8F9 /* InfoPlist.strings */,
 				49205EEE192DE5DC00FFD8F9 /* main.m */,
@@ -185,6 +195,13 @@
 		49205F21192DF9B900FFD8F9 /* ModelObject */ = {
 			isa = PBXGroup;
 			children = (
+				49205F34192F810800FFD8F9 /* CityLocalizer.h */,
+				49205F35192F810800FFD8F9 /* CityLocalizer.m */,
+				49205F2F192F485800FFD8F9 /* City+DAO.h */,
+				49205F30192F485800FFD8F9 /* City+DAO.m */,
+				49205F2C192F3B2C00FFD8F9 /* City.h */,
+				49205F2D192F3B2C00FFD8F9 /* City.m */,
+				49205EF4192DE5DC00FFD8F9 /* GeolocFlickr.xcdatamodeld */,
 				49205F1D192DF93300FFD8F9 /* Picture.h */,
 				49205F1E192DF93300FFD8F9 /* Picture.m */,
 			);
@@ -287,6 +304,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = 49205ED4192DE5DC00FFD8F9;
 			productRefGroup = 49205EDE192DE5DC00FFD8F9 /* Products */;
@@ -326,6 +344,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				49205F1F192DF93300FFD8F9 /* Picture.m in Sources */,
+				49205F31192F485800FFD8F9 /* City+DAO.m in Sources */,
+				49205F36192F810800FFD8F9 /* CityLocalizer.m in Sources */,
 				49205EF3192DE5DC00FFD8F9 /* AppDelegate.m in Sources */,
 				49205F19192DF5D100FFD8F9 /* PicturesViewController.m in Sources */,
 				49205F1C192DF6CF00FFD8F9 /* FJReaderView.m in Sources */,
@@ -333,6 +353,7 @@
 				49205F27192DFAE700FFD8F9 /* FlickrPicturesService.m in Sources */,
 				49205F2B192E4CFB00FFD8F9 /* CitiesTableViewController.m in Sources */,
 				49205EEF192DE5DC00FFD8F9 /* main.m in Sources */,
+				49205F2E192F3B2C00FFD8F9 /* City.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +380,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				49205EEC192DE5DC00FFD8F9 /* en */,
+				49205F32192F7B6700FFD8F9 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -367,6 +389,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				49205F09192DE5DC00FFD8F9 /* en */,
+				49205F33192F7B6700FFD8F9 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -533,6 +556,7 @@
 				49205F11192DE5DC00FFD8F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49205F12192DE5DC00FFD8F9 /* Build configuration list for PBXNativeTarget "GeolocFlickrTests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +565,7 @@
 				49205F14192DE5DC00FFD8F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
