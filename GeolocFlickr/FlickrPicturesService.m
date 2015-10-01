@@ -2,7 +2,7 @@
 //  FlickrPicturesService.m
 //  GeolocFlickr
 //
-//  Created by orsys on 22/05/2014.
+//  Created by François Juteau on 22/05/2014.
 //  Copyright (c) 2014 François Juteau. All rights reserved.
 //
 
@@ -43,7 +43,10 @@ static NSString * key = @"5d1b1e5f14198d772bba0c3f57605fd5";
     {
         Picture * p = [[Picture alloc] init];
         p.title = item[@"title"];
-        p.url = [self urlForPictureWithFrame:item[@"farm"] server:item[@"server"] identifier:item[@"id"] secret:item[@"secret"]];
+        p.url = [self urlForPictureWithFrame:item[@"farm"]
+                                      server:item[@"server"]
+                                  identifier:item[@"id"]
+                                      secret:item[@"secret"]];
         
         [array addObject:p];
     }

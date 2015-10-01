@@ -2,7 +2,7 @@
 //  City+DAO.h
 //  GeolocFlickr
 //
-//  Created by orsys on 23/05/2014.
+//  Created by François Juteau on 23/05/2014.
 //  Copyright (c) 2014 François Juteau. All rights reserved.
 //
 
@@ -11,12 +11,17 @@
 @interface City (DAO)
 
 // insert
-+ (id) new;
++(City *)newWithName:(NSString *)_name;
 
 // delete
-+ (void) deleteCity:(City *)city;
++(void)deleteCity:(City *)city;
+
++(City *)getCityForName:(NSString *)_name;
 
 // get all cities
-+  (NSArray *) allCities;
++(NSArray *)allCities;
+
+// Save the city in the context
+-(void)saveCity;
 
 @end

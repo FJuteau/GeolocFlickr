@@ -2,13 +2,15 @@
 //  PicturesViewController.m
 //  GeolocFlickr
 //
-//  Created by orsys on 22/05/2014.
+//  Created by François Juteau on 22/05/2014.
 //  Copyright (c) 2014 François Juteau. All rights reserved.
 //
 
 #import "PicturesViewController.h"
 #import "FJReaderView.h"
 #import "Picture.h"
+#import "FavoredPicture+DAO.h"
+#import "CacheImageManager.h"
 
 @interface PicturesViewController () <FJReaderViewDelegate>
 
@@ -16,6 +18,7 @@
 
 // Liste des photos à afficher
 @property (strong, nonatomic) NSArray * pictures;
+@property (strong, nonatomic) Picture * pictureToDisplay;
 
 @end
 
@@ -27,7 +30,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     self.ReaderView.delegate = self;
     
     self.ReaderView.hidden = YES;
@@ -52,7 +54,7 @@
                        
     });
     
-    //[self update];
+    [self update];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,23 +68,19 @@
         p.imageData = nil;
     }
     
-    // KVC
-    //    [self.pictures makeObjectsPerformSelector:@selector(setImageData:) withObject:nil];
+//     KVC
+    [self.pictures makeObjectsPerformSelector:@selector(setImageData:) withObject:nil];
     
-    // block API
-    //    [self.pictures enumerateObjectsUsingBlock:^(Picture obj, NSUInteger idx, BOOL *stop) {
-    //        obj.imageData = nil;
-    //    }];
+//     block API
+    [self.pictures enumerateObjectsUsingBlock:^(Picture *obj, NSUInteger idx, BOOL *stop)
+    {
+            obj.imageData = nil;
+        }];
 }
 
 
 - (void) update
 {
-    // Lieu (temporaire)
-    PicturesServiceLocation location;
-    location.longitude = 0;
-    location.latitude = 0;
-    
     // Récupération des photos
     FlickrPicturesService * fetcher = [[FlickrPicturesService alloc] init];
     self.pictures = [fetcher picturesAroundLocation:self.location];
@@ -90,15 +88,17 @@
 
 #pragma mark - ReaderView Delegate
 
-- (UIView *) readerView:(id)sender pageAtIndex:(int)index
+- (UIView *)readerView:(id)sender pageAtIndex:(int)index
 {
-    Picture * pictureToDisplay = self.pictures[index];
+    self.pictureToDisplay = self.pictures[index];
     
     UIView * pageView;
     
-    if (pictureToDisplay.imageData)
+
+    
+    if (self.pictureToDisplay.imageData)
     {
-        UIImage * downloadedImage = [UIImage imageWithData:pictureToDisplay.imageData];
+        UIImage * downloadedImage = [UIImage imageWithData:self.pictureToDisplay.imageData];
         
          pageView = [[UIImageView alloc] initWithImage:downloadedImage];
         pageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -110,12 +110,12 @@
         dispatch_async(netQ,
        ^{
            // Code à executer en async.
-           NSData * data = [NSData dataWithContentsOfURL:pictureToDisplay.url];
+           NSData * data = [NSData dataWithContentsOfURL:self.pictureToDisplay.url];
            
            // CallBack dans la MainQueue
            dispatch_async(dispatch_get_main_queue(),
               ^{
-                  pictureToDisplay.imageData = data;
+                  self.pictureToDisplay.imageData = data;
                   
                   [self.ReaderView showPage:index animated:NO];
               });
@@ -141,51 +141,22 @@
     return pageView;
 }
 
-//- (UIView *) readerFAKEView:(id)sender pageAtIndex:(int)index
-//{
-//    Picture * pictureToDisplay = self.pictures[index];
-//    NSURL * urlForPictureToDisplay = pictureToDisplay.url;
-//    
-//    NSData * dataFromDownloadedPicture;
-//    // Si la data existe déjà, on l'utilise, sinon on la télécharge
-//    if (pictureToDisplay.imageData)
-//    {
-//        dataFromDownloadedPicture = pictureToDisplay.imageData;
-//    }
-//    else
-//    {
-//        dataFromDownloadedPicture = [NSData dataWithContentsOfURL:urlForPictureToDisplay];
-//        pictureToDisplay.imageData = dataFromDownloadedPicture;
-//    }
-//    
-//    UIImage * downloadedImage = [UIImage imageWithData:dataFromDownloadedPicture];
-//    
-//    UIImageView * imageView = [[UIImageView alloc] initWithImage:downloadedImage];
-//    imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    
-//    return imageView;
-//}
 
-- (int) numberOfPagesInReaderView:(id)readerView
+- (NSUInteger) numberOfPagesInReaderView:(id)readerView
 {
     // .count : nombre d'éléments dans un tableau
     return self.pictures.count;
     
 }
 
-- (IBAction)handleSocialSharingButtonClicked:(id)sender
+
+#pragma mark - Handle methods
+
+- (IBAction)handleFavorite:(id)sender
 {
-    Picture * p = self.pictures[self.ReaderView.PageCounter];
-    
-    NSArray * shareItem = @[p.title, p.url];
-    
-    UIActivityViewController * vc = [[UIActivityViewController alloc] initWithActivityItems:shareItem applicationActivities:nil];
-    
-    [self presentViewController:vc
-                       animated:YES
-                     completion:nil];
-    
-    
+    [FavoredPicture newWithImage:self.pictureToDisplay.imageData fromUrl:self.pictureToDisplay.url fromCity:self.tabBarItem.title];
+    [FavoredPicture saveFavoredPicture];
 }
+
 
 @end

@@ -2,7 +2,7 @@
 //  CitiesTableViewController.m
 //  GeolocFlickr
 //
-//  Created by orsys on 22/05/2014.
+//  Created by François Juteau on 22/05/2014.
 //  Copyright (c) 2014 François Juteau. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "City.h"
 #import "City+DAO.h"
 #import "PicturesViewController.h"
+#import "AddCityViewController.h"
 
 @interface CitiesTableViewController ()
 
@@ -23,12 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Boxing en mutable
     self.cities = [[City allCities] mutableCopy];
@@ -81,20 +76,11 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         // Delete the row from the data source
         City * c = self.cities[indexPath.row];
         
@@ -106,24 +92,6 @@
     }
 }
 
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark - Navigation
 
 //In a story board-based application, you will often want to do a little preparation before navigation
@@ -133,7 +101,6 @@
     {
         // Récupération de la city sélectionné
         NSIndexPath * selectedCityIndexPath = self.tableView.indexPathForSelectedRow;
-//        NSIndexPath * selectedCityIndexPath = [self.tableView indexPathForCell:sender];
         
         City * selectedCity = self.cities[selectedCityIndexPath.row];
         
@@ -144,20 +111,26 @@
         location.latitude = selectedCity.latitude.doubleValue;
         location.longitude = selectedCity.longitude.doubleValue;
         
-        
         // Passage au PictureViewController
         PicturesViewController * vc = [segue destinationViewController];
         vc.location = location;
-        
+        [vc setTitle:selectedCity.name];
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
-
-- (IBAction)handleAddCity:(id)sender
+-(IBAction)unwindFromAddCityVCToCitiesTVC:(UIStoryboardSegue *)sender
 {
-    City * c = [City new];
+    AddCityViewController *addCityVC = sender.sourceViewController;
+    
+    City * c = [City newWithName:addCityVC.cityName];
+
+    if (![addCityVC.cityName isEqual:@""]) // Si on entre une ville
+    {
+        [c setLatitude:@(addCityVC.coords.latitude)];
+        [c setLongitude:@(addCityVC.coords.longitude)];
+    }
+    
+    [c saveCity];
     [self.cities addObject:c];
     [self.tableView reloadData];
     
@@ -170,12 +143,16 @@
 #pragma mark - KVO
 
 // Callback de "addObserver"
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
 {
     // On reload les datas de la tableView vu qu'on vient de recevoir les datas
     [self.tableView reloadData];
     
     [object removeObserver:self forKeyPath:keyPath];
 }
+
 
 @end

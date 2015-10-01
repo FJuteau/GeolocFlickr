@@ -2,7 +2,7 @@
 //  FJReaderView.m
 //  MengaReader
 //
-//  Created by orsys on 21/05/2014.
+//  Created by François Juteau on 21/05/2014.
 //  Copyright (c) 2014 François Juteau. All rights reserved.
 //
 
@@ -23,10 +23,6 @@ static int identifier = 24;
     if (!_isConfigured)
     {
         [self configure];
-        if ([self.delegate numberOfPagesInReaderView:self])
-        {
-            [self showPage:0 animated:NO];
-        }
         _isConfigured = YES;
     }
 }
@@ -44,9 +40,6 @@ static int identifier = 24;
     swpRight.direction = UISwipeGestureRecognizerDirectionRight;
     [swpRight addTarget:self action:@selector(handleSwipe:)];
     [self addGestureRecognizer:swpRight];
-    
-    _PageCounter = 0;
-    
 }
 
 - (void) showPage:(int)index animated:(BOOL)isAnimated

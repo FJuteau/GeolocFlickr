@@ -1,8 +1,9 @@
+
 //
 //  CityLocalizer.m
 //  GeolocFlickr
 //
-//  Created by orsys on 23/05/2014.
+//  Created by François Juteau on 23/05/2014.
 //  Copyright (c) 2014 François Juteau. All rights reserved.
 //
 
@@ -12,8 +13,8 @@
 
 @interface CityLocalizer() <CLLocationManagerDelegate>
 
-@property (strong, nonatomic) City * city;
-@property (strong, nonatomic) CLLocationManager * locationManager;
+@property (strong, nonatomic) City *city;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -28,7 +29,11 @@ static NSMutableArray * LivingInstance;
     localizer.locationManager = [[CLLocationManager alloc] init];
     localizer.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     localizer.locationManager.delegate = localizer;
+    [localizer.locationManager requestWhenInUseAuthorization];
+    
     [localizer.locationManager startUpdatingLocation];
+    
+    NSLog(@"start updating location");
     
     if (!LivingInstance)
     {
@@ -41,7 +46,7 @@ static NSMutableArray * LivingInstance;
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation * lastKownLocation = [locations lastObject];
-    
+    NSLog(@"locationManager");
     [manager stopUpdatingLocation];
     
     self.city.longitude = @(lastKownLocation.coordinate.longitude);
@@ -55,5 +60,31 @@ static NSMutableArray * LivingInstance;
                        
                        [LivingInstance removeObject:self];
                    }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"locationManager to location");
+    [manager stopUpdatingLocation];
+    
+    self.city.longitude = @(newLocation.coordinate.longitude);
+    self.city.latitude = @(newLocation.coordinate.latitude);
+    
+    CLGeocoder * geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:newLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       CLPlacemark * firstPlaceMark = [placemarks firstObject];
+                       self.city.name = firstPlaceMark.locality;
+                       
+                       [LivingInstance removeObject:self];
+                   }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR locationManager : %@", [error description]);
 }
 @end
